@@ -2,6 +2,7 @@ package com.lzf.easyfloat.example.activity
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MotionEvent
@@ -11,6 +12,7 @@ import com.lzf.easyfloat.EasyFloat
 import com.lzf.easyfloat.enums.ShowPattern
 import com.lzf.easyfloat.enums.SidePattern
 import com.lzf.easyfloat.example.R
+import com.lzf.easyfloat.example.lockscreen.LockScreenActivity
 import com.lzf.easyfloat.example.logger
 import com.lzf.easyfloat.example.startActivity
 import com.lzf.easyfloat.example.widget.*
@@ -100,63 +102,64 @@ class MainActivity : BaseActivity(), View.OnClickListener {
      */
     @SuppressLint("SetTextI18n")
     private fun showActivityFloat(tag: String) {
-        EasyFloat.with(this)
-            .setSidePattern(SidePattern.RESULT_HORIZONTAL)
-            .setImmersionStatusBar(true)
-            .setGravity(Gravity.END, 0, 10)
-            // 传入View，传入布局文件皆可，如：MyCustomView(this)、R.layout.float_custom
-            .setLayout(MyCustomView(this)) {
-                it.findViewById<TextView>(R.id.textView).setOnClickListener { toast() }
-            }
-            .setTag(TAG_1)
-            .registerCallback {
-                // 在此处设置view也可以，建议在setLayout进行view操作
-                createResult { isCreated, msg, _ ->
-                    toast("isCreated: $isCreated")
-                    logger.e("DSL:  $isCreated   $msg")
-                }
-
-                show { toast("show") }
-
-                hide { toast("hide") }
-
-                dismiss { toast("dismiss") }
-
-                touchEvent { view, event ->
-                    if (event.action == MotionEvent.ACTION_DOWN) {
-                        view.findViewById<TextView>(R.id.textView).apply {
-                            text = "拖一下试试"
-                            setBackgroundResource(R.drawable.corners_green)
-                        }
-                    }
-                }
-
-                drag { view, motionEvent ->
-                    view.findViewById<TextView>(R.id.textView).apply {
-                        text = "我被拖拽..."
-                        setBackgroundResource(R.drawable.corners_red)
-                    }
-                    DragUtils.registerDragClose(motionEvent, object : OnTouchRangeListener {
-                        override fun touchInRange(inRange: Boolean, view: BaseSwitchView) {
-                            setVibrator(inRange)
-                        }
-
-                        override fun touchUpInRange() {
-                            EasyFloat.dismiss(tag, true)
-                        }
-                    })
-                }
-
-                dragEnd {
-                    it.findViewById<TextView>(R.id.textView).apply {
-                        text = "拖拽结束"
-                        val location = IntArray(2)
-                        getLocationOnScreen(location)
-                        setBackgroundResource(if (location[0] > 10) R.drawable.corners_left else R.drawable.corners_right)
-                    }
-                }
-            }
-            .show()
+//        EasyFloat.with(this)
+//            .setSidePattern(SidePattern.RESULT_HORIZONTAL)
+//            .setImmersionStatusBar(true)
+//            .setGravity(Gravity.END, 0, 10)
+//            // 传入View，传入布局文件皆可，如：MyCustomView(this)、R.layout.float_custom
+//            .setLayout(MyCustomView(this)) {
+//                it.findViewById<TextView>(R.id.textView).setOnClickListener { toast() }
+//            }
+//            .setTag(TAG_1)
+//            .registerCallback {
+//                // 在此处设置view也可以，建议在setLayout进行view操作
+//                createResult { isCreated, msg, _ ->
+//                    toast("isCreated: $isCreated")
+//                    logger.e("DSL:  $isCreated   $msg")
+//                }
+//
+//                show { toast("show") }
+//
+//                hide { toast("hide") }
+//
+//                dismiss { toast("dismiss") }
+//
+//                touchEvent { view, event ->
+//                    if (event.action == MotionEvent.ACTION_DOWN) {
+//                        view.findViewById<TextView>(R.id.textView).apply {
+//                            text = "拖一下试试"
+//                            setBackgroundResource(R.drawable.corners_green)
+//                        }
+//                    }
+//                }
+//
+//                drag { view, motionEvent ->
+//                    view.findViewById<TextView>(R.id.textView).apply {
+//                        text = "我被拖拽..."
+//                        setBackgroundResource(R.drawable.corners_red)
+//                    }
+//                    DragUtils.registerDragClose(motionEvent, object : OnTouchRangeListener {
+//                        override fun touchInRange(inRange: Boolean, view: BaseSwitchView) {
+//                            setVibrator(inRange)
+//                        }
+//
+//                        override fun touchUpInRange() {
+//                            EasyFloat.dismiss(tag, true)
+//                        }
+//                    })
+//                }
+//
+//                dragEnd {
+//                    it.findViewById<TextView>(R.id.textView).apply {
+//                        text = "拖拽结束"
+//                        val location = IntArray(2)
+//                        getLocationOnScreen(location)
+//                        setBackgroundResource(if (location[0] > 10) R.drawable.corners_left else R.drawable.corners_right)
+//                    }
+//                }
+//            }
+//            .show()
+       this.startActivity(Intent(this, LockScreenActivity::class.java))
     }
 
     private fun showActivity2(tag: String) {
