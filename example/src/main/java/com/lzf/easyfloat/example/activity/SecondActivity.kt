@@ -17,7 +17,6 @@ import com.lzf.easyfloat.enums.ShowPattern
 import com.lzf.easyfloat.enums.SidePattern
 import com.lzf.easyfloat.example.R
 import com.lzf.easyfloat.example.startActivity
-import com.lzf.easyfloat.interfaces.OnDisplayHeight
 import com.lzf.easyfloat.interfaces.OnFloatCallbacks
 import com.lzf.easyfloat.utils.DisplayUtils
 import kotlinx.android.synthetic.main.activity_second.*
@@ -25,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_second.changeBackground
 import kotlinx.android.synthetic.main.activity_second.openEditTextFloat
 import kotlinx.android.synthetic.main.activity_second.openJavaTestActivity
 import kotlinx.android.synthetic.main.activity_second.recoverBackground
-import kotlinx.android.synthetic.main.activity_third.*
 import kotlin.random.Random
 
 /**

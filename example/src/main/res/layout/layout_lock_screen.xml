@@ -2,6 +2,7 @@
 <com.lzf.easyfloat.example.lockscreen.LockScreenView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/root"
     android:background="#80000000">
 
     <TextView
@@ -11,5 +12,6 @@
         android:text="应用已锁定"
         android:textColor="#FFFFFF"
         android:textSize="24sp" />
+
 
 </com.lzf.easyfloat.example.lockscreen.LockScreenView>

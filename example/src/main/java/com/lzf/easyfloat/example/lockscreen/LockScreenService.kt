@@ -40,7 +40,7 @@ class LockScreenService : Service() {
 
         val currentApp = appSwitchMonitor.getCurrentApp()
         if (shouldLock(currentApp)) {
-            LockScreenManager.getInstance(this).showLockScreen()
+            LockScreenManager.getInstance(this).showLockScreen(LockType.LOCK_SCREEN_BY_ACTIVITY)
         }
     }
 
